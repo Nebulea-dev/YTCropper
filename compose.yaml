@@ -1,12 +1,15 @@
 services: 
     frontend:
-        build:
-            dockerfile: ./frontend/Dockerfile
+        build: ./frontend/
         ports:
             - "5173:5173"
+        volumes:
+            - ./frontend/src:/app/src
+            - ./frontend/public:/app/public
 
     backend:
-        build:
-            dockerfile: ./backend/Dockerfile
+        build: ./backend/
         ports:
             - "5000:5000"
+        volumes:
+            - ./backend/src:/app/src

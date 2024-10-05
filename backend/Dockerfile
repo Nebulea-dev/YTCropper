@@ -22,7 +22,7 @@ RUN apt update && \
         git
 
 # Install pyenv
-ENV PYTHON_VERSION 3.8.10 
+ENV PYTHON_VERSION 3.12.0
 ENV PYENV_ROOT="$HOME/pyenv"
 ENV PATH="$PYENV_ROOT/bin:$PATH"
 ENV PATH="$PYENV_ROOT/shims:$PATH"
@@ -33,7 +33,8 @@ RUN pyenv install $PYTHON_VERSION
 RUN pyenv global $PYTHON_VERSION
 
 # Copy files
-COPY ./backend /app
+RUN mkdir -p /app
+COPY requirements.txt /app
 WORKDIR /app
 
 # Make venv
@@ -45,4 +46,6 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Run server
-CMD [ "flask", "run" ]
+WORKDIR /app/src
+EXPOSE 5000
+CMD [ "gunicorn", "--bind", "0.0.0.0:5000", "app:app" ]

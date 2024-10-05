@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import Transcode from './components/Transcode.vue'
+import FindStreamLink from './components/FindStreamLink.vue'
 </script>
 
 <template>
@@ -13,7 +14,7 @@ import Transcode from './components/Transcode.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-  <Transcode />
+  <FindStreamLink/>
 </template>
 
 <style scoped>

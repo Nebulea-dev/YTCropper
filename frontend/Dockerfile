@@ -24,7 +24,7 @@ ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:$PATH"
 
-COPY ./frontend /app
+COPY . /app
 WORKDIR /app
 RUN bun install
 
